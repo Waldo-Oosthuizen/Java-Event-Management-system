@@ -1,9 +1,10 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import models.Event;
+
 import models.Staff;
 import models.Student;
+import managers.EventManager;
 
 public class Main {
 
@@ -21,26 +22,29 @@ public class Main {
 
         System.out.println("Staff Name: " + staff.getUsername());
 
+        EventManager manager = new EventManager();
 
-        Event event = new Event(1
+        manager.createEvent(1
             , "Java Practice", 
             LocalDate.of(2026,9,15), 
             LocalTime.of(14,30), 
             "Computer Labs Class", 
             20);
 
-            System.out.println("Event ID: " + event.getEventId());
-            System.out.println("Name: " + event.getEventName());
-            System.out.println("Date: " + event.getEventDate());
-            System.out.println("Time: " + event.getEventTime());
-            System.out.println("Location: " + event.getLocation());
-            System.out.println("Max Students: " + event.getMaxStudents());
+        manager.createEvent(2
+            , "Python Practice", 
+            LocalDate.of(2026,9,15), 
+            LocalTime.of(14,30), 
+            "Computer Labs Class", 
+            10);
 
-            event.getRegStudents().add(student);
+        // List all events
+        System.out.println("--- Current Events ---");
+        manager.listAllEvents();
 
-            System.out.println(
-        event.getRegStudents().get(0).getUsername()
-);
+        // Find event by ID
+        
+        manager.getEventById(1);
     }
     
 }

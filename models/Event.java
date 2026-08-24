@@ -77,4 +77,15 @@ public class Event {
     public Queue<Student> getWaitlist() {
         return waitlist;
     }
+
+    // Convert event to string to make it readable
+    @Override
+    public String toString() {
+        return "Event ID: " + eventId +
+            "\nName: " + eventName +
+            "\nDate: " + eventDate +
+            "\nTime: " + eventTime +
+            "\nLocation: " + location +
+            "\nMaximum Students: " + maxStudents;
+}
 }

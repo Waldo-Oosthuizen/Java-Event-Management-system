@@ -1,5 +1,11 @@
 package managers;
 
-public class regManager {
-    
+
+public class RegManager {
+
+
+    // View all events
+    // Register for events
+    // Cancel event registration
+    // Student's their registration status
 }
