@@ -43,8 +43,25 @@ public class Main {
         manager.listAllEvents();
 
         // Find event by ID
-        
         manager.getEventById(1);
+
+        // Update event
+        manager.updateEvent(
+            1,
+            "Advanced Java Workshop",
+            LocalDate.of(2026, 9, 20),
+            LocalTime.of(15, 30),
+            "Main Hall",
+            30
+        );
+        
+        // List all events after update
+        System.out.println("--- Current Events After update ---");
+        manager.listAllEvents();
+
+        // Delete Event
+        manager.cancelEvent(1);
+
     }
     
 }

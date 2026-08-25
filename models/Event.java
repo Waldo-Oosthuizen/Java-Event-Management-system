@@ -78,6 +78,27 @@ public class Event {
         return waitlist;
     }
 
+    // Setters
+    public void setEventName(String eventName) {
+    this.eventName = eventName;
+    }
+
+    public void setEventDate(LocalDate eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public void setEventTime(LocalTime eventTime) {
+        this.eventTime = eventTime;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public void setMaxStudents(Integer maxStudents) {
+        this.maxStudents = maxStudents;
+    }
+
     // Convert event to string to make it readable
     @Override
     public String toString() {
@@ -87,5 +108,7 @@ public class Event {
             "\nTime: " + eventTime +
             "\nLocation: " + location +
             "\nMaximum Students: " + maxStudents;
-}
+    }
+
+    
 }

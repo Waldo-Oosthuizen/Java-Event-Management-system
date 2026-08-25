@@ -63,9 +63,45 @@ public class EventManager {
     }
     
     // Update event details
+    public void updateEvent(
+        Integer eventId,
+        String eventName,
+        LocalDate eventDate,
+        LocalTime eventTime,
+        String location,
+        Integer maxStudents
+    ) {
+        // Check for event
+        Event event = getEventById(eventId);
+
+        if (event == null){
+            System.out.println("Event not found");
+            return;
+        }
+
+        event.setEventName(eventName);
+        event.setEventDate(eventDate);
+        event.setEventTime(eventTime);
+        event.setLocation(location);
+        event.setMaxStudents(maxStudents);
+
+    System.out.println("Event successfully updated.");
+    }
 
     // Cancel events
+    public void cancelEvent(int eventId) {
 
+    Event event = getEventById(eventId);
+
+    if (event == null) {
+        System.out.println("Event not found.");
+        return;
+    }
+
+    events.remove(event);
+
+    System.out.println("Event with id: " + eventId + " successfully cancelled.");
+}
 
     
     // Register Students
