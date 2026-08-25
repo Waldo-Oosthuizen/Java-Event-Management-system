@@ -5,7 +5,6 @@ import java.util.ArrayList;
   // Inherits from User class GeeksforGeeks (2017)
 public class Student extends User {
 
-
     private Integer waitListedEvents;
     private ArrayList<Integer> registeredEvents;
 
@@ -21,6 +20,7 @@ public class Student extends User {
     public ArrayList<Integer> getRegisteredE(){
         return registeredEvents;
     }
+    
     // Get waitlisted  events
     public Integer getWaitlistedE(){
         return waitListedEvents;
