@@ -11,7 +11,8 @@ public class Main {
 
     private static Scanner input = new Scanner(System.in);
   
-    Student student = new Student(1, "Waldo", "waldo@gmail.com", 1);
+    // Student student = new Student(1, "Waldo", "waldo@gmail.com", 1);
+    
     public static void main(String[] args){
 
         EventManager eventManager = new EventManager();

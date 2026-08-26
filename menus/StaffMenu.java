@@ -134,8 +134,33 @@ public class StaffMenu {
 
                 // 7. Search Events
                 case 7:
-                    System.out.println("Choice 4 Selected, goodbye");
-                    
+                    System.out.println("----- Searching Event -----");
+                    System.out.println("1. Search by Name");
+                    System.out.println("2. Search by Date");
+
+                    System.out.println("Enter Choice: ");
+                    int searchChoice = input.nextInt();
+
+
+                    switch (searchChoice) {
+                        case 1: 
+                        System.out.print("Enter Event Name: ");
+                        String searchName = input.nextLine();
+
+                        eventManager.searchByName(searchName);
+
+                        break;
+
+                        case 2: 
+                        System.out.print("Enter Event Date (YYYY-MM-DD)");
+                        LocalDate searchDate = LocalDate.parse(input.nextLine());
+
+                        // eventDate.searchByDate(searchDate);
+
+                        default:
+                            System.out.println("Invalide Selection");
+                            break;
+                    }
                     break;  
 
                 // 8. Sort Events

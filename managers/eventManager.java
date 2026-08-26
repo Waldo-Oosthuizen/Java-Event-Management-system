@@ -26,8 +26,8 @@ public class EventManager {
         LocalTime eventTime, 
         String location, 
         Integer maxStudents)
-        {
 
+        {
             // Create new event using the event constructor
             Event newEvent = new Event(eventId, eventName, eventDate,eventTime,
                 location, maxStudents);
@@ -69,8 +69,8 @@ public class EventManager {
         LocalDate eventDate,
         LocalTime eventTime,
         String location,
-        Integer maxStudents
-    ) {
+        Integer maxStudents){
+
         // Check for event
         Event event = getEventById(eventId);
 
@@ -85,25 +85,43 @@ public class EventManager {
         event.setLocation(location);
         event.setMaxStudents(maxStudents);
 
-    System.out.println("Event successfully updated.");
+        System.out.println("Event successfully updated.");
     }
 
     // Cancel events
     public void cancelEvent(int eventId) {
 
-    Event event = getEventById(eventId);
+        Event event = getEventById(eventId);
 
-    if (event == null) {
-        System.out.println("Event not found.");
-        return;
+        if (event == null) {
+            System.out.println("Event not found.");
+            return;
+        }
+
+        events.remove(event);
+        System.out.println("Event with id: " + eventId + " successfully cancelled.");
     }
 
-    events.remove(event);
+    // Search for events by name
+    public void searchByName(String searchTerm) {
 
-    System.out.println("Event with id: " + eventId + " successfully cancelled.");
-}
+        boolean found = false;
 
-    
+        for (Event event : events) {
+
+            if (event.getEventName().toLowerCase().contains(searchTerm.toLowerCase())){
+                System.out.println("--- Found Event! ---");
+                System.out.println(event);
+
+                found = true;
+            }
+        }
+        
+        if (!found){
+            System.out.println("--- Event Could Not Be Found ----");
+        }
+
+    }
     // Register Students
     // private ArrayList<Student> registeredStudents;
     // Waitlist
