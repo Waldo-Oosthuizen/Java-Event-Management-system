@@ -25,13 +25,13 @@ public class RegManager {
         }
 
         // Add registered student
-        student.addRegisteredEvent(eventId);
+        student.addRegistrationE(eventId);
         System.out.println("Student successfully registered.");
 
      }
 
     // Cancel event registration
 
-    // Student's their registration status 
+    // View registration status 
 
 }

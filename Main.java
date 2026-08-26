@@ -1,7 +1,9 @@
 
 import menus.StaffMenu;
 import menus.StudentMenu;
+// import models.Student;
 import managers.EventManager;
+
 
 
 import java.time.LocalDate;
@@ -23,7 +25,8 @@ public class Main {
 
         // Staff menu
         StaffMenu staffMenu = new StaffMenu(eventManager);
-
+        
+        
         // Events for testing
         eventManager.createEvent(
             1,
@@ -70,6 +73,21 @@ public class Main {
             40
         );
 
+        // Student for testing
+        // Student student = new Student(
+        //     1,
+        //     "Waldo",
+        //     "waldo@gmail.com",
+        //     1
+        // );
+
+        // RegManager registrationManager =
+        // new RegManager(eventManager);
+
+        // registrationManager.registerStudent(student, 1);
+
+        // System.out.println(student.getRegisteredE());
+
         // Main menu loop
         boolean running = true;
         while (running) {
@@ -80,7 +98,7 @@ public class Main {
             System.out.println("Enter Choice");
 
             int choice = input.nextInt();
-
+            
 
             switch (choice) {
                 case 1:
@@ -108,8 +126,8 @@ public class Main {
 
 // Testing Code used in early stages of development
 
-        // student.addRegisteredEvent(100);
-        // student.addRegisteredEvent(200);
+        // student.addRegistrationE(100);
+        // student.addRegistrationE(200);
         // System.out.println("ID: " + student.getId());
         // System.out.println("Username: " + student.getUsername());
         // System.out.println("Email: " + student.getEmail());

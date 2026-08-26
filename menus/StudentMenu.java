@@ -2,9 +2,12 @@ package menus;
 // Imports
 import java.util.Scanner;
 import managers.EventManager;
+import managers.RegManager;
+import models.Student;
+
 
 public class StudentMenu {
-
+    
     // Event manager used by Staff Menu as well
     EventManager eventManager;
     // Constructor
@@ -13,8 +16,10 @@ public class StudentMenu {
     }
     // Scanner for input
     Scanner input = new Scanner(System.in);
-        // Display menu method
-        public void displayMenu(){
+    // Display menu method
+    public void displayMenu(){
+        // registration manager
+        RegManager registrationManager = new RegManager(eventManager);
         // Bool for while loop
         boolean running = true;
         // keep running while true
@@ -37,7 +42,26 @@ public class StudentMenu {
 
                 // 2. Register for Event
                 case 2:
-                    System.out.println("Choice 2 Selected");
+                    System.out.println("Registering Student....");
+
+                    Student student = new Student(
+                    1,
+                    "Waldo",
+                    "waldo@gmail.com",
+                    1
+                    );
+
+                    System.out.println("Enter Event ID: ");
+                    int regId = input.nextInt();
+                    input.nextLine();
+
+
+
+
+
+                registrationManager.registerStudent(student, regId);
+
+                System.out.println(student.getRegisteredE());
                     break;
 
                 // 3. Cancel Registration
@@ -57,7 +81,7 @@ public class StudentMenu {
                     break;
             }
         }
-        }
+    }
 
     
         

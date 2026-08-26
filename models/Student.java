@@ -28,7 +28,7 @@ public class Student extends User {
 
     // Add methods
     // Add registered event
-    public void addRegisteredEvent(Integer eventId) {
+    public void addRegistrationE(Integer eventId) {
         registeredEvents.add(eventId);
     }
 
