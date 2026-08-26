@@ -140,10 +140,14 @@ public class StaffMenu {
 
                     System.out.println("Enter Choice: ");
                     int searchChoice = input.nextInt();
+                    input.nextLine();
 
 
                     switch (searchChoice) {
+                        // Search by name
+
                         case 1: 
+                        System.out.println("----- Searching Event By Name -----");
                         System.out.print("Enter Event Name: ");
                         String searchName = input.nextLine();
 
@@ -152,22 +156,57 @@ public class StaffMenu {
                         break;
 
                         case 2: 
+                        System.out.println("----- Searching Event By Date -----");
                         System.out.print("Enter Event Date (YYYY-MM-DD)");
                         LocalDate searchDate = LocalDate.parse(input.nextLine());
 
-                        // eventDate.searchByDate(searchDate);
+                        eventManager.searchByDate(searchDate);
+
+                        break;
 
                         default:
-                            System.out.println("Invalide Selection");
+                            System.out.println("Invalid Selection");
                             break;
                     }
                     break;  
 
                 // 8. Sort Events
                 case 8:
-                    System.out.println("Choice 4 Selected, goodbye");
+                    System.out.println("----- Sorting Events -----");
+                    System.out.println("1. Sort by Name");
+                    System.out.println("2. Sort by Date");
+
+                    System.out.println("Enter Choice: ");
+                    int sortChoice = input.nextInt();
+                    input.nextLine();
+
+
+                    switch (sortChoice) {
+
+                        // Sort by name
+                        case 1: 
+                        System.out.println("----- Sorting Event By Name -----");
+
+                        eventManager.sortByName();
+
+                        break;
+
+                        case 2: 
+                        System.out.println("----- Searching Event By Date -----");
+                        System.out.print("Enter Event Date (YYYY-MM-DD)");
+                        LocalDate searchDate = LocalDate.parse(input.nextLine());
+
+                        eventManager.searchByDate(searchDate);
+
+                        break;
+
+                        default:
+                            System.out.println("Invalide Selection");
+                            break;
+                    }
+                    break;  
            
-                    break;
+
                     
                 // 9. Exit
                 case 9:

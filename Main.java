@@ -2,9 +2,10 @@
 import menus.StaffMenu;
 import menus.StudentMenu;
 import managers.EventManager;
-import models.Student;
 
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Main {
@@ -22,6 +23,52 @@ public class Main {
 
         // Staff menu
         StaffMenu staffMenu = new StaffMenu(eventManager);
+
+        // Events for testing
+        eventManager.createEvent(
+            1,
+            "Java Practice",
+            LocalDate.of(2026, 9, 15),
+            LocalTime.of(14, 30),
+            "Computer Lab",
+            20
+        );
+
+        eventManager.createEvent(
+            2,
+            "Python Workshop",
+            LocalDate.of(2026, 9, 18),
+            LocalTime.of(10, 0),
+            "Room 101",
+            15
+    );
+
+        eventManager.createEvent(
+            3,
+            "Advanced Java Workshop",
+            LocalDate.of(2026, 9, 22),
+            LocalTime.of(13, 0),
+            "Computer Lab",
+            25
+        );
+
+        eventManager.createEvent(
+            4,
+            "Database Fundamentals",
+            LocalDate.of(2026, 9, 25),
+            LocalTime.of(9, 30),
+            "Room 205",
+            30
+        );
+
+        eventManager.createEvent(
+            5,
+            "Java Fundamentals",
+            LocalDate.of(2026, 10, 1),
+            LocalTime.of(14, 0),
+            "Lecture Hall",
+            40
+        );
 
         // Main menu loop
         boolean running = true;

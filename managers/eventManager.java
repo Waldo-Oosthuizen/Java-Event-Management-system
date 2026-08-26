@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Comparator;
 
 
 // import models.Student;
@@ -45,7 +46,9 @@ public class EventManager {
         }
 
         for (Event event : events) {
+            System.out.println("-----------------------------");
             System.out.println(event);
+            System.out.println("-----------------------------");
         }
     }
 
@@ -102,7 +105,7 @@ public class EventManager {
         System.out.println("Event with id: " + eventId + " successfully cancelled.");
     }
 
-    // Search for events by name
+    // Search by name
     public void searchByName(String searchTerm) {
 
         boolean found = false;
@@ -121,6 +124,48 @@ public class EventManager {
             System.out.println("--- Event Could Not Be Found ----");
         }
 
+    }
+
+    // Search by date
+    public void searchByDate (LocalDate dateSearch) {
+
+        boolean found = false;
+
+        for (Event event : events) {
+
+            if (event.getEventDate().equals(dateSearch)){
+                System.out.println("--- Found Event! ---");
+                System.out.println(event);
+
+                found = true;
+            }
+        }
+
+        if (!found) {
+             System.out.println("xxx Event Not Found! xxx");
+        }
+
+    }
+    
+    // Sort by name. Oracle (2019)
+    public void sortByName() {
+        // Sort events alphabetically by comparing each event's get name value
+        events.sort(Comparator.comparing(Event::getEventName));
+
+        System.out.println("--- Events Sorted by Name ---");
+
+        listAllEvents();
+
+    }
+    
+    // Sort by date
+    public void sortByDate() {
+        // Sort events numerically by comparing each event's get date value
+        events.sort(Comparator.comparing(Event::getEventDate));
+
+        System.out.println("--- Events Sorted by Date ---");
+
+        listAllEvents();
     }
     // Register Students
     // private ArrayList<Student> registeredStudents;
