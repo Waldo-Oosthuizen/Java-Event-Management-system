@@ -10,22 +10,19 @@ public class StudentMenu {
     private Student alice = new Student(
         101,
         "Alice",
-        "alice@gmail.com",
-        0
+        "alice@gmail.com"
     );
 
     private Student bob = new Student(
         102,
         "Bob",
-        "bob@gmail.com",
-        0
+        "bob@gmail.com"
     );
 
     private Student charlie = new Student(
         103,
         "Charlie",
-        "charlie@gmail.com",
-        0
+        "charlie@gmail.com"
     );
 
     // Registration Manager
@@ -131,7 +128,14 @@ public class StudentMenu {
 
                 // 4. Check Registration Status
                 case 4:
-                    System.out.println("Choice 4 Selected");
+                    System.out.println("----- Registration Status -----");
+
+                    System.out.println("Student: " + student.getUsername());
+                    System.out.println("Student ID: " + student.getId());
+
+                    System.out.println("Registered Events: " + student.getRegisteredE());
+                    System.out.println("Waitlisted Events: " + student.getWaitlistedE());
+                    
                     break;
 
                 // 5. Exit Student Menu

@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Queue;
-import java.util.LinkedList;;
+import java.util.LinkedList;
+
 
 public class Event {
     // Event ID
@@ -99,6 +100,16 @@ public class Event {
         this.maxStudents = maxStudents;
     }
 
+    // Add registered students to registered array list
+    public void addRegStudent(Student student){
+        registeredStudents.add(student);
+    }
+
+    // Add student to waitlist queue
+    public void addToWaitlist(Student student) {
+        waitlist.add(student);
+    }
+    
     // Convert event to string to make it readable
     @Override
     public String toString() {
@@ -109,6 +120,8 @@ public class Event {
             "\nLocation: " + location +
             "\nMaximum Students: " + maxStudents;
     }
+
+
 
     
 }

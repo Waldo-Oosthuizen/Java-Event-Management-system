@@ -44,7 +44,7 @@ public class Main {
             LocalTime.of(10, 0),
             "Room 101",
             15
-    );
+        );
 
         eventManager.createEvent(
             3,
