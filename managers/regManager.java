@@ -30,15 +30,18 @@ public class RegManager {
             return;
         }
 
-        // Check if event's max capacity has been reached
+        // Check if event's max capacity has not been reached
         if (event.getRegStudents().size() < event.getMaxStudents()){
-            // Add registered student
+            // Register student
             student.addRegistrationE(eventId);
+            // Add student to event's registered student record
+            event.addRegStudent(student);
             System.out.println("Student successfully registered.");
         } 
 
         else {
             event.addToWaitlist(student);
+            student.addToWaitlistedE(eventId);
             System.out.println("Event is full.");
             System.out.println("Student has been added to waitlist.");
         }

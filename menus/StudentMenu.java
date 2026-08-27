@@ -133,7 +133,7 @@ public class StudentMenu {
                     System.out.println("Student: " + student.getUsername());
                     System.out.println("Student ID: " + student.getId());
 
-                    System.out.println("Registered Events: " + student.getRegisteredE());
+                    System.out.println("Registered Events: " + "ID: " + student.getRegisteredE());
                     System.out.println("Waitlisted Events: " + student.getWaitlistedE());
                     
                     break;
