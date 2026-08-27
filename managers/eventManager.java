@@ -168,6 +168,7 @@ public class EventManager {
         listAllEvents();
     }
     // Register Students
+    
     // private ArrayList<Student> registeredStudents;
     // Waitlist
     // private Queue<Student> waitlist;
