@@ -3,7 +3,10 @@ package menus;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
+import models.Event;
+import models.Student;
 import managers.EventManager;
+
 
 public class StaffMenu {
     // Event manager used by Student Menu as well
@@ -121,8 +124,33 @@ public class StaffMenu {
 
                 // 5. View Participants
                 case 5:
-                    System.out.println("------ Viewing Participants");
-                    
+                    System.out.println("------ Viewing Participants ------");
+
+                    System.out.println("Enter Event ID: ");
+                    int idInput = input.nextInt();
+                    input.nextLine();
+
+                    Event event = eventManager.getEventById(idInput);
+
+                    // Check if event was found
+                    if (event == null) {
+                        System.out.println("Event not found");
+                        break;
+                    }
+
+                    if (event.getRegStudents().isEmpty()){
+                        System.out.println("No students have regsitered for this event yet");
+                    }
+                    else {
+                        System.out.println("Participants: ");
+
+                        for (Student student: event.getRegStudents()){
+                            System.out.println(
+                                "ID: " + student.getId() + " | Name: " + student.getUsername()
+                            );
+                        }
+                    }
+
                     break;     
 
 
