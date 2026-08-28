@@ -123,7 +123,14 @@ public class StudentMenu {
 
                 // 3. Cancel Registration
                 case 3:
-                    System.out.println("Choice 3 Selected");
+                    System.out.println("----- Cancel Registration -----");
+
+                    System.out.println("Enter Event ID: ");
+                    int eventId = input.nextInt();
+                    input.nextLine();
+
+                    regManager.cancelRegistration(student, eventId);
+
                     break;
 
                 // 4. Check Registration Status

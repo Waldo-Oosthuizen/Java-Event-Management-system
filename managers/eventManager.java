@@ -28,7 +28,18 @@ public class EventManager {
         String location, 
         Integer maxStudents)
 
-        {
+        {   
+            // Check for duplicate
+            if (getEventById(eventId) != null) {
+                System.out.println("Event ID already exists.");
+                return;
+            }
+
+            // Validate that max students are not 0 or less
+            if (maxStudents <= 0) {
+                System.out.println("Maximum students must be greater than 0.");
+                return;
+            }
             // Create new event using the event constructor
             Event newEvent = new Event(eventId, eventName, eventDate,eventTime,
                 location, maxStudents);
@@ -56,9 +67,7 @@ public class EventManager {
     public Event getEventById(Integer inputId) {
         System.out.println("--- Searching for event with the ID: " + inputId);
         for (Event event : events) {
-            if (inputId == event.getEventId()){
-                System.out.println("--- Found Event! ---");
-                System.out.println(event);
+            if (inputId.equals(event.getEventId())){
                 return event;
             }
         }
@@ -76,6 +85,13 @@ public class EventManager {
 
         // Check for event
         Event event = getEventById(eventId);
+        
+        // Make sure max students is not set to 0 or less
+        if (maxStudents <= 0) {
+            System.out.println("Maximum students must be greater than 0.");
+        return;
+}
+
 
         if (event == null){
             System.out.println("Event not found");

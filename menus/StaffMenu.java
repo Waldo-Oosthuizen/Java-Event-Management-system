@@ -29,8 +29,8 @@ public class StaffMenu {
             System.out.println("2. View Events");
             System.out.println("3. Update Event");
             System.out.println("4. Cancel Event");
-            System.out.println("5. View Participants"); // TO DO
-            System.out.println("6. View Waitlist"); // TO DO
+            System.out.println("5. View Participants"); 
+            System.out.println("6. View Waitlist"); 
             System.out.println("7. Search Events");
             System.out.println("8. Sort Events");
             System.out.println("9. Back");
@@ -156,7 +156,33 @@ public class StaffMenu {
 
                 // 6. View Waitlist
                 case 6:
-                    System.out.println("Choice 4 Selected, goodbye");
+                    System.out.println("------ Viewing Waitlist ------");
+
+                    System.out.println("Enter Event ID: ");
+                    int waitlistId = input.nextInt();
+                    input.nextLine();
+
+                    Event waitlistedEvent = eventManager.getEventById(waitlistId);
+
+                    // Check if event was found
+                    if (waitlistedEvent == null) {
+                        System.out.println("Event not found");
+                        break;
+                    }
+
+                    if (waitlistedEvent.getWaitlist().isEmpty()){
+                        System.out.println("No students are waitlisted for this event yet");
+                    }
+                    else {
+                        System.out.println("Waitlisted Students: ");
+
+                        for (Student student: waitlistedEvent.getWaitlist()){
+                            System.out.println(
+                                "ID: " + student.getId() + " | Name: " + student.getUsername()
+                            );
+                        }
+                    }
+
                     
                     break;   
 
@@ -182,11 +208,11 @@ public class StaffMenu {
                         eventManager.searchByName(searchName);
 
                         break;
-
+                        // Search by date
                         case 2: 
-                        System.out.println("----- Searching Event By Date -----");
-                        System.out.print("Enter Event Date (YYYY-MM-DD)");
-                        LocalDate searchDate = LocalDate.parse(input.nextLine());
+                            System.out.println("----- Searching Event By Date -----");
+                            System.out.print("Enter Event Date (YYYY-MM-DD)");
+                            LocalDate searchDate = LocalDate.parse(input.nextLine());
 
                         eventManager.searchByDate(searchDate);
 
@@ -220,16 +246,14 @@ public class StaffMenu {
                         break;
 
                         case 2: 
-                        System.out.println("----- Searching Event By Date -----");
-                        System.out.print("Enter Event Date (YYYY-MM-DD)");
-                        LocalDate searchDate = LocalDate.parse(input.nextLine());
+                        System.out.println("----- Sorting Event By Date -----");
 
-                        eventManager.searchByDate(searchDate);
+                        eventManager.sortByDate();
 
                         break;
 
                         default:
-                            System.out.println("Invalide Selection");
+                            System.out.println("Invalid Selection");
                             break;
                     }
                     break;  
@@ -238,7 +262,7 @@ public class StaffMenu {
                     
                 // 9. Exit
                 case 9:
-                    System.out.println("Choice 4 Selected, goodbye");
+                    System.out.println("Returning to main menu...");
                     running = false;
                     break;
 

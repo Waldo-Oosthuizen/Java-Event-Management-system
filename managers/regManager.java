@@ -47,8 +47,31 @@ public class RegManager {
         }
      }
     // Cancel event registration
+     public void cancelRegistration(Student student, Integer eventId){
 
-    // View registration status 
+    // Find the event
+        Event event = eventManger.getEventById(eventId);
+
+        if (event == null) {
+            System.out.println("Event not found");
+            return;
+        }
+
+        // Check if student is already registered
+        if (!student.getRegisteredE().contains(eventId)){
+            System.out.println("Student is not registered for this event");
+            return;
+        }
+
+        // Remove registered status from student
+        student.removeRegisteredEvent(eventId);
+        // Removed registered student from event
+        event.getRegStudents().remove(student);
+
+        System.out.println("Student registered for this event has been canceled");
+
+     }
+
 
 }
 
