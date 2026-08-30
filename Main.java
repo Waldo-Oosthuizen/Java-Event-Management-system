@@ -34,7 +34,7 @@ public class Main {
             LocalDate.of(2026, 9, 15),
             LocalTime.of(14, 30),
             "Computer Lab",
-            2
+            1
         );
 
         eventManager.createEvent(

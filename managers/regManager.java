@@ -70,8 +70,41 @@ public class RegManager {
 
         System.out.println("Student registered for this event has been canceled");
 
+        // Auto Promote first waitlisted student in background procesing thread (GeeksforGeeks, 2022)
+        Thread promoThread = new Thread(() -> {
+
+             System.out.println("(THREAD STARTED) Notification ****");
+
+            promoteWaitlist(event);
+
+            System.out.println("(THREAD FINISHED) ****");
+        });
+
+        // Start thread
+        promoThread.start();
      }
 
+     // Waitlist auto promotion method
+     public void promoteWaitlist(Event event){
+        // return if waitlist is empty
+        if(event.getWaitlist().isEmpty()){
+            return;
+        }
+
+        // Get the first student in the waitlist and remove the student from the queue
+        Student student = event.getWaitlist().poll();
+
+        // Promote student to registration status
+        // update event
+        event.addRegStudent(student);
+        // update student
+        student.addRegistrationE(event.getEventId());
+        student.removeWaitlistedE(event.getEventId());
+
+        // Notification
+        System.out.println(
+            student.getUsername() + " has been promoted from the waitlist.");
+     }
 
 }
 

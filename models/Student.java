@@ -27,7 +27,6 @@ public class Student extends User {
         return waitListedEvents;
     }
 
-
     // Add registered event
     public void addRegistrationE(Integer eventId) {
         registeredEvents.add(eventId);
@@ -37,9 +36,15 @@ public class Student extends User {
     public void addToWaitlistedE(Integer eventId) {
         waitListedEvents.add(eventId);
     }
+
     // Remove registered event
     public void removeRegisteredEvent(Integer eventId) {
         registeredEvents.remove(eventId);
     }
 
+    // remove waitlisted event
+    public void removeWaitlistedE(Integer eventId) {
+        waitListedEvents.remove(eventId);
+    }
+    
 }
