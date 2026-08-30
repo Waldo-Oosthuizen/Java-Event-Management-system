@@ -6,6 +6,7 @@ import java.util.Scanner;
 import models.Event;
 import models.Student;
 import managers.EventManager;
+import utils.InputValidator;
 
 
 public class StaffMenu {
@@ -37,32 +38,28 @@ public class StaffMenu {
 
             // User choice
             System.out.println("Enter Choice: ");
-            int choice = input.nextInt();
+            int choice = InputValidator.intCheck(input);
 
             switch (choice) {
                 // 1. Create Event
                 case 1:
-                    System.out.println("------- Creating Event -------");
-
                     System.out.println("Enter Event ID: ");
-                    int eventId = input.nextInt();
-                    input.nextLine();
+                    int eventId = InputValidator.positiveIntCheck(input);
 
                     System.out.println("Enter Event Name: ");
-                    String eventName = input.nextLine();
-               
-                    System.out.println("Enter Event Date (YYYY-MM-DD): ");
-                    LocalDate eventDate = LocalDate.parse(input.nextLine());
+                    String eventName = InputValidator.emptyStringCheck(input);
 
-                    System.out.println("Enter Event Time: ");
-                    LocalTime eventTime = LocalTime.parse(input.nextLine());
+                    System.out.println("Enter Event Date (YYYY-MM-DD): ");
+                    LocalDate eventDate = InputValidator.dateCheck(input);
+
+                    System.out.println("Enter Event Time (HH:mm): ");
+                    LocalTime eventTime = InputValidator.timeCheck(input);
 
                     System.out.println("Enter Event Location: ");
-                    String eventLocation = input.nextLine();
+                    String eventLocation = InputValidator.emptyStringCheck(input);
 
-                    System.out.print("Enter Maximum Students: ");
-                    int maxStudents = input.nextInt();
-                    input.nextLine();
+                    System.out.println("Enter Maximum Students: ");
+                    int maxStudents = InputValidator.positiveIntCheck(input);
 
                     eventManager.createEvent(eventId, eventName, eventDate, eventTime, eventLocation, maxStudents);
                     break;
@@ -77,27 +74,24 @@ public class StaffMenu {
                 // 3. Update Events
                 case 3:
                     System.out.println("------- Updating Event -------");
-
-                    System.out.println("Enter Event ID to update: ");
-                    int eventIdUpdate = input.nextInt();
-                    input.nextLine();
                     
+                    System.out.println("Enter Event ID to update: ");
+                    int eventIdUpdate = InputValidator.positiveIntCheck(input);
 
                     System.out.println("Enter New Event Name: ");
-                    String newEventName = input.nextLine();
-               
-                    System.out.println("Enter New Event Date (YYYY-MM-DD): ");
-                    LocalDate newEventDate = LocalDate.parse(input.nextLine());
+                    String newEventName = InputValidator.emptyStringCheck(input);
 
-                    System.out.println("Enter New New Event Time: ");
-                    LocalTime newEventTime = LocalTime.parse(input.nextLine());
+                    System.out.println("Enter New Event Date (YYYY-MM-DD): ");
+                    LocalDate newEventDate = InputValidator.dateCheck(input);
+
+                    System.out.println("Enter New Event Time (HH:mm): ");
+                    LocalTime newEventTime = InputValidator.timeCheck(input);
 
                     System.out.println("Enter New Event Location: ");
-                    String newEventLocation = input.nextLine();
+                    String newEventLocation = InputValidator.emptyStringCheck(input);
 
-                    System.out.print("Enter New Maximum Students: ");
-                    int newMaxStudents = input.nextInt();
-                    input.nextLine();
+                    System.out.println("Enter New Maximum Students: ");
+                    int newMaxStudents = InputValidator.positiveIntCheck(input);
               
                     // Update event
                     eventManager.updateEvent(eventIdUpdate, 
@@ -115,8 +109,7 @@ public class StaffMenu {
                     System.out.println("Cancelling Event");
 
                     System.out.println("Enter Event ID to cancel: ");
-                    int cancelId = input.nextInt();
-                    input.nextLine();
+                    int cancelId = InputValidator.positiveIntCheck(input);
 
                     eventManager.cancelEvent(cancelId);
                     
@@ -127,8 +120,7 @@ public class StaffMenu {
                     System.out.println("------ Viewing Participants ------");
 
                     System.out.println("Enter Event ID: ");
-                    int idInput = input.nextInt();
-                    input.nextLine();
+                    int idInput = InputValidator.positiveIntCheck(input);
 
                     Event event = eventManager.getEventById(idInput);
 
@@ -159,8 +151,7 @@ public class StaffMenu {
                     System.out.println("------ Viewing Waitlist ------");
 
                     System.out.println("Enter Event ID: ");
-                    int waitlistId = input.nextInt();
-                    input.nextLine();
+                    int waitlistId = InputValidator.positiveIntCheck(input);
 
                     Event waitlistedEvent = eventManager.getEventById(waitlistId);
 
@@ -193,8 +184,7 @@ public class StaffMenu {
                     System.out.println("2. Search by Date");
 
                     System.out.println("Enter Choice: ");
-                    int searchChoice = input.nextInt();
-                    input.nextLine();
+                    int searchChoice = InputValidator.intCheck(input);
 
 
                     switch (searchChoice) {
@@ -203,7 +193,7 @@ public class StaffMenu {
                         case 1: 
                         System.out.println("----- Searching Event By Name -----");
                         System.out.print("Enter Event Name: ");
-                        String searchName = input.nextLine();
+                        String searchName = InputValidator.emptyStringCheck(input);
 
                         eventManager.searchByName(searchName);
 
@@ -212,7 +202,7 @@ public class StaffMenu {
                         case 2: 
                             System.out.println("----- Searching Event By Date -----");
                             System.out.print("Enter Event Date (YYYY-MM-DD)");
-                            LocalDate searchDate = LocalDate.parse(input.nextLine());
+                            LocalDate searchDate = InputValidator.dateCheck(input);
 
                         eventManager.searchByDate(searchDate);
 
@@ -231,8 +221,7 @@ public class StaffMenu {
                     System.out.println("2. Sort by Date");
 
                     System.out.println("Enter Choice: ");
-                    int sortChoice = input.nextInt();
-                    input.nextLine();
+                    int sortChoice = InputValidator.intCheck(input);
 
 
                     switch (sortChoice) {
