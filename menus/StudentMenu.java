@@ -4,6 +4,7 @@ import java.util.Scanner;
 import managers.EventManager;
 import managers.RegManager;
 import models.Student;
+import utils.InputValidator;
 
 public class StudentMenu {
     
@@ -46,9 +47,8 @@ public class StudentMenu {
             System.out.println("2. Bob");
             System.out.println("3. Charlie");
             System.out.println("4. Back");
-            // Clear next Enter Key
-            int choice = input.nextInt();
-            input.nextLine();
+            // User input
+            int choice = InputValidator.intCheck(input);
 
             switch(choice) {
                 case 1:
@@ -68,14 +68,13 @@ public class StudentMenu {
                     return null;
             }
 
-
     }
-    // Display menus
+    // Display menu
     public void displayMenu(){
         // Current Student
         Student currStudent = selectStudent();
 
-
+        // If student has not been chosen
         if(currStudent == null){
             return;
         }
@@ -97,9 +96,8 @@ public class StudentMenu {
             System.out.println("3. Cancel Registration");
             System.out.println("4. Check Registration Status");
             System.out.println("5. Back");
-            // Clear next Enter Key
-            int choice = input.nextInt();
-            input.nextLine();
+            // User input
+            int choice = InputValidator.intCheck(input);
 
             switch (choice) {
                 // 1. View Events
@@ -113,9 +111,9 @@ public class StudentMenu {
                     System.out.println("Registering Student....");
 
                     System.out.println("Enter Event ID: ");
-                    int regId = input.nextInt();
-                    input.nextLine();
-
+                    int regId = InputValidator.positiveIntCheck(input);
+                 
+                // Registration manager
                 regManager.registerStudent(student, regId);
 
                 System.out.println(student.getRegisteredE());
@@ -126,9 +124,8 @@ public class StudentMenu {
                     System.out.println("----- Cancel Registration -----");
 
                     System.out.println("Enter Event ID: ");
-                    int eventId = input.nextInt();
-                    input.nextLine();
-
+                    int eventId = InputValidator.positiveIntCheck(input);
+                    // Registration manager
                     regManager.cancelRegistration(student, eventId);
 
                     break;
@@ -150,6 +147,9 @@ public class StudentMenu {
                     System.out.println("Choice 5 Selected, goodbye");
                     running = false;
                     break;
+                
+                default:
+                    System.out.println("Selection was invalid");
             }
         }
     }

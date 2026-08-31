@@ -1,8 +1,9 @@
 
 import menus.StaffMenu;
 import menus.StudentMenu;
-// import models.Student;
+
 import managers.EventManager;
+import utils.InputValidator;
 
 
 
@@ -96,8 +97,8 @@ public class Main {
             System.out.println("2. Staff");
             System.out.println("3. Exit");
             System.out.println("Enter Choice");
-
-            int choice = input.nextInt();
+            // Validate with input validator
+            int choice = InputValidator.intCheck(input);
             
 
             switch (choice) {
