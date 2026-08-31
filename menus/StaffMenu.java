@@ -5,8 +5,11 @@ import java.time.LocalTime;
 import java.util.Scanner;
 import models.Event;
 import models.Student;
+
 import managers.EventManager;
+
 import utils.InputValidator;
+import utils.FileManager;
 
 
 public class StaffMenu {
@@ -31,10 +34,11 @@ public class StaffMenu {
             System.out.println("3. Update Event");
             System.out.println("4. Cancel Event");
             System.out.println("5. View Participants"); 
-            System.out.println("6. View Waitlist"); 
+            System.out.println("6. View wait list"); 
             System.out.println("7. Search Events");
             System.out.println("8. Sort Events");
-            System.out.println("9. Back");
+            System.out.println("9. Save Data");
+            System.out.println("10. Back");
 
             // User choice
             System.out.println("Enter Choice: ");
@@ -131,7 +135,7 @@ public class StaffMenu {
                     }
 
                     if (event.getRegStudents().isEmpty()){
-                        System.out.println("No students have regsitered for this event yet");
+                        System.out.println("No students have registered for this event yet");
                     }
                     else {
                         System.out.println("Participants: ");
@@ -146,9 +150,9 @@ public class StaffMenu {
                     break;     
 
 
-                // 6. View Waitlist
+                // 6. View wait list
                 case 6:
-                    System.out.println("------ Viewing Waitlist ------");
+                    System.out.println("------ Viewing wait list ------");
 
                     System.out.println("Enter Event ID: ");
                     int waitlistId = InputValidator.positiveIntCheck(input);
@@ -247,10 +251,16 @@ public class StaffMenu {
                     }
                     break;  
            
-
-                    
-                // 9. Exit
+                // 9. Save
                 case 9:
+                    System.out.println("Saving...");
+                    // Store events
+                    FileManager.saveEvents(eventManager);
+                    
+                    break;
+                    
+                // 10. Exit
+                case 10:
                     System.out.println("Returning to main menu...");
                     running = false;
                     break;

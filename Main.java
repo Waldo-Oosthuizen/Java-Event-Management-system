@@ -3,8 +3,8 @@ import menus.StaffMenu;
 import menus.StudentMenu;
 
 import managers.EventManager;
+import utils.FileManager;
 import utils.InputValidator;
-
 
 
 import java.time.LocalDate;
@@ -18,77 +18,18 @@ public class Main {
     // Student student = new Student(1, "Waldo", "waldo@gmail.com", 1);
     
     public static void main(String[] args){
-
+        // Event manager
         EventManager eventManager = new EventManager();
 
+        // Load events from file
+        FileManager.loadEvents(eventManager);
+        
         // Student menu
         StudentMenu studentMenu = new StudentMenu(eventManager);
 
         // Staff menu
         StaffMenu staffMenu = new StaffMenu(eventManager);
         
-        
-        // Events for testing
-        eventManager.createEvent(
-            1,
-            "Java Practice",
-            LocalDate.of(2026, 9, 15),
-            LocalTime.of(14, 30),
-            "Computer Lab",
-            1
-        );
-
-        eventManager.createEvent(
-            2,
-            "Python Workshop",
-            LocalDate.of(2026, 9, 18),
-            LocalTime.of(10, 0),
-            "Room 101",
-            15
-        );
-
-        eventManager.createEvent(
-            3,
-            "Advanced Java Workshop",
-            LocalDate.of(2026, 9, 22),
-            LocalTime.of(13, 0),
-            "Computer Lab",
-            25
-        );
-
-        eventManager.createEvent(
-            4,
-            "Database Fundamentals",
-            LocalDate.of(2026, 9, 25),
-            LocalTime.of(9, 30),
-            "Room 205",
-            30
-        );
-
-        eventManager.createEvent(
-            5,
-            "Java Fundamentals",
-            LocalDate.of(2026, 10, 1),
-            LocalTime.of(14, 0),
-            "Lecture Hall",
-            40
-        );
-
-        // Student for testing
-        // Student student = new Student(
-        //     1,
-        //     "Waldo",
-        //     "waldo@gmail.com",
-        //     1
-        // );
-
-        // RegManager registrationManager =
-        // new RegManager(eventManager);
-
-        // registrationManager.registerStudent(student, 1);
-
-        // System.out.println(student.getRegisteredE());
-
         // Main menu loop
         boolean running = true;
         while (running) {
@@ -109,9 +50,15 @@ public class Main {
                     staffMenu.displayMenu();
                     break;
                 case 3:
-                    System.out.println("Goodbye...");
-                    running = false;
-                    break;
+              
+                // Store events
+                FileManager.saveEvents(eventManager);
+                // Exit program
+                running = false;
+                System.out.println("Goodbye...");
+                
+                break;
+
                 default:
                     System.out.println("Invalid Selection");
 

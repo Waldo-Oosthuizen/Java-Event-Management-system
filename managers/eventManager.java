@@ -65,7 +65,7 @@ public class EventManager {
 
     // Get event by its ID
     public Event getEventById(Integer inputId) {
-        System.out.println("--- Searching for event with the ID: " + inputId);
+        // System.out.println("--- Searching for event with the ID: " + inputId);
         for (Event event : events) {
             if (inputId.equals(event.getEventId())){
                 return event;
@@ -184,4 +184,13 @@ public class EventManager {
         listAllEvents();
     }
 
+    // Get all events
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    // add event - Used in file manager
+    public void addEvent(Event event) {
+        events.add(event);
+    }
 }
