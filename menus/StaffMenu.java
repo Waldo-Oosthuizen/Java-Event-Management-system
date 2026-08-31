@@ -37,8 +37,8 @@ public class StaffMenu {
             System.out.println("6. View wait list"); 
             System.out.println("7. Search Events");
             System.out.println("8. Sort Events");
-            System.out.println("9. Save Data");
-            System.out.println("10. Back");
+            System.out.println("9. Back");
+
 
             // User choice
             System.out.println("Enter Choice: ");
@@ -66,6 +66,8 @@ public class StaffMenu {
                     int maxStudents = InputValidator.positiveIntCheck(input);
 
                     eventManager.createEvent(eventId, eventName, eventDate, eventTime, eventLocation, maxStudents);
+                    // Save changes
+                    FileManager.saveEvents(eventManager);
                     break;
 
                 // 2. View Events
@@ -106,6 +108,9 @@ public class StaffMenu {
                         newMaxStudents
                     );
 
+                    // Save changes
+                    FileManager.saveEvents(eventManager);
+
                     break;
 
                 // 4. Cancel Events
@@ -116,6 +121,8 @@ public class StaffMenu {
                     int cancelId = InputValidator.positiveIntCheck(input);
 
                     eventManager.cancelEvent(cancelId);
+                    // Save changes
+                    FileManager.saveEvents(eventManager);
                     
                     break;
 
@@ -250,17 +257,10 @@ public class StaffMenu {
                             break;
                     }
                     break;  
-           
-                // 9. Save
+        
+                    
+                // 9. Exit
                 case 9:
-                    System.out.println("Saving...");
-                    // Store events
-                    FileManager.saveEvents(eventManager);
-                    
-                    break;
-                    
-                // 10. Exit
-                case 10:
                     System.out.println("Returning to main menu...");
                     running = false;
                     break;

@@ -1,5 +1,5 @@
 package utils;
-// Adapted from Gupta (2025) and Oracle (2019)
+// Adapted from Gupta (2025) and Oracle (n.d)
 import java.io.*;
 
 import managers.EventManager;
