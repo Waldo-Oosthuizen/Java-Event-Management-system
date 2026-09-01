@@ -144,6 +144,7 @@ public class FileManager {
             System.out.println("***Error saving students: " + e.getMessage());
         }     
     }
+    
 
     // Load students from file
     public static void loadStudents(
@@ -151,72 +152,82 @@ public class FileManager {
         EventManager eventManager) {
 
 
-            try (BufferedReader reader = new BufferedReader(new FileReader("data/students.txt"))){
-                String line = "";
+        try (BufferedReader reader = new BufferedReader(new FileReader("data/students.txt"))){
+            String line = "";
 
-                // While there is something in line
-                while ((line = reader.readLine()) != null){
-                    String[] data = line.split("\\|", -1);
-                    // Student ID
-                    Integer studentId = Integer.parseInt(data[0]);
+            // While there is something in line
+            while ((line = reader.readLine()) != null){
+                String[] data = line.split("\\|", -1);
 
-                    // Find existing student in studentManager
-                    Student student = studentManager.getStudentById(studentId);
-
-                    // Check if no student is found
-                    if(student == null){
-                        System.out.println("Student not found");
-                        continue;
-                    }
-
-                    // Load the registered events if not empty
-                    if(!data[3].isEmpty()){
-
-                        String[] regEvents = data[3].split(",");
-
-                        for (String eventId : regEvents){
-                            Integer id = Integer.parseInt(eventId);
-                            // Add event to student registration list
-                            student.addRegistrationE(id);
-
-                            // Add student to event's registration list
-                            Event event = eventManager.getEventById(id);
-
-                            if (event != null){
-                                event.addRegStudent(student);
-                            }
-                        }
-                    }
-
-                    // Load the waitlisted events
-                    if(!data[4].isEmpty()){
-
-                        String[] waitlistedEvents = data[4].split(",");
-
-                        for (String eventID : waitlistedEvents){
-                            Integer id = Integer.parseInt(eventID);
-                            // Add event to student's waitlist
-                            student.addToWaitlistedE(id);
-
-                            // Add student to event's waitlist
-                            Event event = eventManager.getEventById(id);
-
-                            if(event != null){
-                                event.addToWaitlist(student);
-                            }
-                        }
-                    }
-     
+                // Ensure data length will not be more than 5
+                if (data.length != 5){
+                    System.out.println("Invalide student data: " + line);
+                    continue;
                 }
-            }
-            catch (FileNotFoundException e){
-                System.out.println("Student file not found. Continuing without student data");
-            }
-            catch (IOException e){
-                System.out.println("Error loading students: " + e.getMessage());
+
+                // Student ID
+                Integer studentId = Integer.parseInt(data[0]);
+
+                // Find existing student in studentManager
+                Student student = studentManager.getStudentById(studentId);
+
+                // Check if no student is found
+                if(student == null){
+                    System.out.println("Student not found");
+                    continue;
+                }
+
+                // Load the registered events if not empty
+                if(!data[3].isEmpty()){
+
+                    String[] regEvents = data[3].split(",");
+
+                    for (String eventId : regEvents){
+                        Integer id = Integer.parseInt(eventId);
+                        // Add event to student registration list
+                        student.addRegistrationE(id);
+
+                        // Add student to event's registration list
+                        Event event = eventManager.getEventById(id);
+
+                        if (event != null){
+                            event.addRegStudent(student);
+                        }
+                    }
+                }
+
+                // Load the waitlisted events
+                if(!data[4].isEmpty()){
+
+                    String[] waitlistedEvents = data[4].split(",");
+
+                    for (String eventID : waitlistedEvents){
+                        Integer id = Integer.parseInt(eventID);
+                        // Add event to student's waitlist
+                        student.addToWaitlistedE(id);
+
+                        // Add student to event's waitlist
+                        Event event = eventManager.getEventById(id);
+
+                        if(event != null){
+                            event.addToWaitlist(student);
+                        }
+                    }
+                }
+
             }
         }
+        catch (FileNotFoundException e){
+            System.out.println("Student file not found. Continuing without student data");
+        }
+        catch (IOException e){
+            System.out.println("Error loading students: " + e.getMessage());
+        }
+        catch (NumberFormatException e){
+            System.out.println("Invalid number in student data");
+        }
+    }
     
-}
+}   
 
 

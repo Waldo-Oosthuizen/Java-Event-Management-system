@@ -16,14 +16,13 @@ public class StudentManager {
     public StudentManager() {
         
          students = new ArrayList<>();
-
-        // Alice
+        // Student data
         students.add(new Student(
             101,
             "Harry",
             "harry@gmail.com"
         ));
-        // Bob
+       
         students.add(new Student(
             102,
             "Ron",
