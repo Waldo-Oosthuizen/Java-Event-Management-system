@@ -20,35 +20,25 @@ public class StudentManager {
         // Alice
         students.add(new Student(
             101,
-            "Alice",
-            "alice@gmail.com"
+            "Harry",
+            "harry@gmail.com"
         ));
         // Bob
         students.add(new Student(
             102,
-            "Bob",
-            "bob@gmail.com"
+            "Ron",
+            "ron@gmail.com"
         ));
 
         students.add(new Student(
             103,
-            "Charlie",
-            "charlie@gmail.com"
+            "Hermione",
+            "hermoine@gmail.com"
         ));
     }
 
 
-    private Student bob = new Student(
-        102,
-        "Bob",
-        "bob@gmail.com"
-    );
 
-    private Student charlie = new Student(
-        103,
-        "Charlie",
-        "charlie@gmail.com"
-    );
 
     // Getter
     public List<Student> getStudents() {

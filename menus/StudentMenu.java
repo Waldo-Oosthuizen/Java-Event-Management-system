@@ -32,9 +32,9 @@ public class StudentMenu {
     // Students Selection menu
     private Student selectStudent() {
             System.out.println("#### Student Menu ####");
-            System.out.println("1. Alice");
-            System.out.println("2. Bob");
-            System.out.println("3. Charlie");
+            System.out.println("1. Harry");
+            System.out.println("2. Ron");
+            System.out.println("3. Hermione");
             System.out.println("4. Back");
             // User input
             int choice = InputValidator.intCheck(input);

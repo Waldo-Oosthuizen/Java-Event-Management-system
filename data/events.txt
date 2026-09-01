@@ -1,5 +1,6 @@
-1|Java Fundamentals Workshop|2026-09-15|14:30|Computer Lab|3
-2|Python Programming Workshop|2026-09-18|10:00|Room 101|2
-3|Database Fundamentals|2026-09-22|13:00|Computer Lab|2
-4|Web Development|2026-09-25|09:30|Lecture Hall|1
-5|Cybersecurity|2026-10-01|14:00|Room 205|3
+1|Defence Against the Dark Arts|2026-09-15|14:30|Defence Classroom|10
+2|Potions Brewing Workshop|2026-09-18|10:00|Potions Dungeon|5
+3|Charms Practical|2026-09-22|13:00|Charms Classroom|10
+4|Care of Magical Creatures|2026-09-25|09:30|Forbidden Forest|2
+5|Quidditch Training Session|2026-10-01|14:00|Quidditch Pitch|3
+6|Advanced Transfiguration|2026-10-05|15:00|Transfiguration Classroom|1
