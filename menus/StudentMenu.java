@@ -3,41 +3,30 @@ package menus;
 import java.util.Scanner;
 import managers.EventManager;
 import managers.RegManager;
+import managers.StudentManager;
+
 import models.Student;
 import utils.InputValidator;
+import utils.FileManager;
 
 public class StudentMenu {
     
-    private Student alice = new Student(
-        101,
-        "Alice",
-        "alice@gmail.com"
-    );
-
-    private Student bob = new Student(
-        102,
-        "Bob",
-        "bob@gmail.com"
-    );
-
-    private Student charlie = new Student(
-        103,
-        "Charlie",
-        "charlie@gmail.com"
-    );
-
+    
     // Registration Manager
     private RegManager regManager;
     // Event manager 
     private EventManager eventManager;
-
+    // Student manager
+    private StudentManager studentManager;
     // Scanner for input
     private Scanner input = new Scanner(System.in);
 
     // Constructor
-    public StudentMenu(EventManager eventManager){
+    public StudentMenu(EventManager eventManager, StudentManager studentManager){
         this.eventManager = eventManager;
+        this.studentManager = studentManager;
         this.regManager = new RegManager(eventManager);
+        
     }
 
     // Students Selection menu
@@ -52,13 +41,13 @@ public class StudentMenu {
 
             switch(choice) {
                 case 1:
-                    return alice;
+                    return studentManager.getStudentById(101);
                 
                 case 2:
-                    return bob;
+                    return studentManager.getStudentById(102);
 
                 case 3: 
-                    return charlie;
+                    return studentManager.getStudentById(103);
 
                 case 4: 
                     return null;
@@ -115,7 +104,9 @@ public class StudentMenu {
                  
                 // Registration manager
                 regManager.registerStudent(student, regId);
-
+                // Store to file
+                FileManager.saveStudents(studentManager);
+                FileManager.saveEvents(eventManager);
                 System.out.println(student.getRegisteredE());
                     break;
 
@@ -127,7 +118,8 @@ public class StudentMenu {
                     int eventId = InputValidator.positiveIntCheck(input);
                     // Registration manager
                     regManager.cancelRegistration(student, eventId);
-
+                    // Store to file
+                    regManager.cancelRegistration(student, eventId);
                     break;
 
                 // 4. Check Registration Status

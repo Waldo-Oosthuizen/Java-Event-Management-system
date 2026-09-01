@@ -15,7 +15,7 @@ public class RegManager {
     }
 
      // Register for events
-     public void registerStudent(Student student, Integer eventId) {
+    public void registerStudent(Student student, Integer eventId) {
         // Find the event
         Event event = eventManger.getEventById(eventId);
 
@@ -25,7 +25,7 @@ public class RegManager {
         }
 
         // Check if student is already registered
-        if (student.getRegisteredE().contains(eventId)){
+        if (student.getRegisteredE().contains(eventId) || student.getWaitlistedE().contains(eventId)){
             System.out.println("Already registered or added to waitlist");
             return;
         }
@@ -46,10 +46,11 @@ public class RegManager {
             System.out.println("Student has been added to waitlist.");
         }
      }
+    
     // Cancel event registration
-     public void cancelRegistration(Student student, Integer eventId){
+    public void cancelRegistration(Student student, Integer eventId) {
 
-    // Find the event
+        // Find the event
         Event event = eventManger.getEventById(eventId);
 
         if (event == null) {
@@ -57,32 +58,55 @@ public class RegManager {
             return;
         }
 
-        // Check if student is already registered
-        if (!student.getRegisteredE().contains(eventId)){
-            System.out.println("Student is not registered for this event");
-            return;
+        // Student is registered
+        if (student.getRegisteredE().contains(eventId)) {
+
+            // Remove registered status from student
+            student.removeRegisteredEvent(eventId);
+
+            // Remove registered student from event
+            event.getRegStudents().remove(student);
+
+            System.out.println(
+                "Student registration for this event has been cancelled."
+            );
+
+            // Auto-promote first waitlisted student
+            Thread promoThread = new Thread(() -> {
+
+                System.out.println("(THREAD STARTED) Notification ****");
+
+                promoteWaitlist(event);
+
+                System.out.println("(THREAD FINISHED) ****");
+            });
+
+            // Start thread
+            promoThread.start();
         }
 
-        // Remove registered status from student
-        student.removeRegisteredEvent(eventId);
-        // Removed registered student from event
-        event.getRegStudents().remove(student);
+        // Student is waitlisted
+        else if (student.getWaitlistedE().contains(eventId)) {
 
-        System.out.println("Student registered for this event has been canceled");
+            // Remove waitlisted status from student
+            student.removeWaitlistedE(eventId);
 
-        // Auto Promote first waitlisted student in background procesing thread (GeeksforGeeks, 2022)
-        Thread promoThread = new Thread(() -> {
+            // Remove student from event waitlist
+            event.getWaitlist().remove(student);
 
-             System.out.println("(THREAD STARTED) Notification ****");
+            System.out.println(
+                "Student has been removed from the waitlist."
+            );
+        }
 
-            promoteWaitlist(event);
+        // Student has neither status
+        else {
 
-            System.out.println("(THREAD FINISHED) ****");
-        });
-
-        // Start thread
-        promoThread.start();
-     }
+            System.out.println(
+                "Student is not registered or waitlisted for this event."
+            );
+        }
+    }
 
      // Waitlist auto promotion method
      public void promoteWaitlist(Event event){
