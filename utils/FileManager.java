@@ -32,10 +32,10 @@ public class FileManager {
 
             }
          // Success notification
-         System.out.println("Event Data has successfully been saved.");
+         System.out.println("***Event data saved");
         }
         catch (IOException e){
-            System.out.println("Error saving events: " + e.getMessage());
+            System.out.println("***Error saving events: " + e.getMessage());
         }
     }
 
@@ -137,11 +137,11 @@ public class FileManager {
                 output.write(data.getBytes());
             }
 
-            System.out.println("Student Data has successfully been saved.");
+            System.out.println("***Student Data saved.");
         }
         catch(IOException e) 
         {
-            System.out.println("Error saving students: " + e.getMessage());
+            System.out.println("***Error saving students: " + e.getMessage());
         }     
     }
 

@@ -1,4 +1,4 @@
-1|Defence Against the Dark Arts|2026-09-15|14:30|Defence Classroom|10
+1|Defence Against the Dark Arts|2026-09-15|14:30|Defence Classroom|1
 2|Potions Brewing Workshop|2026-09-18|10:00|Potions Dungeon|5
 3|Charms Practical|2026-09-22|13:00|Charms Classroom|10
 4|Care of Magical Creatures|2026-09-25|09:30|Forbidden Forest|2

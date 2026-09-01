@@ -101,13 +101,17 @@ public class StudentMenu {
 
                     System.out.println("Enter Event ID: ");
                     int regId = InputValidator.positiveIntCheck(input);
-                 
-                // Registration manager
-                regManager.registerStudent(student, regId);
-                // Store to file
-                FileManager.saveStudents(studentManager);
-                FileManager.saveEvents(eventManager);
-                System.out.println(student.getRegisteredE());
+
+                    // Registration manager
+                    boolean regSuccess = regManager.registerStudent(student, regId);
+
+                    if (regSuccess){
+                        // Store to file
+                        FileManager.saveStudents(studentManager);
+                        FileManager.saveEvents(eventManager);
+                        System.out.println(student.getRegisteredE());
+                    }
+
                     break;
 
                 // 3. Cancel Registration
@@ -116,10 +120,15 @@ public class StudentMenu {
 
                     System.out.println("Enter Event ID: ");
                     int eventId = InputValidator.positiveIntCheck(input);
-                    // Registration manager
-                    regManager.cancelRegistration(student, eventId);
-                    // Store to file
-                    regManager.cancelRegistration(student, eventId);
+                    
+                    boolean cancelSuccess = regManager.cancelRegistration(student, eventId);
+
+                    if(cancelSuccess){
+                        // Store to file
+                        FileManager.saveStudents(studentManager);
+                        FileManager.saveEvents(eventManager);
+                    }
+
                     break;
 
                 // 4. Check Registration Status
@@ -129,8 +138,8 @@ public class StudentMenu {
                     System.out.println("Student: " + student.getUsername());
                     System.out.println("Student ID: " + student.getId());
 
-                    System.out.println("Registered Events: " + "ID: " + student.getRegisteredE());
-                    System.out.println("Waitlisted Events: " + student.getWaitlistedE());
+                    System.out.println("Registered Events(ID): " + student.getRegisteredE());
+                    System.out.println("Waitlisted Events(ID): " + student.getWaitlistedE());
                     
                     break;
 
